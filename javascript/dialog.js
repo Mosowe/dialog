@@ -3,6 +3,7 @@
 * 修改：当页面多个重叠弹框时候的问题
 *       关闭功能使弹窗内部的元素class为dialog-close，即可实现关闭
 *       键盘事件esc可关闭弹框
+*       通过某个事件之后关闭弹框请调用closedialog()方法
 * */
 function dialog(){
     this.oDiv = null;
@@ -138,7 +139,11 @@ function winWidth() {
 function winHeight() {
     return document.documentElement.clientHeight
 }
-
+//点击事件关闭dialog
+function closedialog(){
+    var dialogboxs = document.getElementsByClassName("dialogbox");
+    document.body.removeChild(dialogboxs[dialogboxs.length-1])
+}
 function extend(obj1,obj2){
     for(var attr in obj2){
         obj1[attr] = obj2[attr];
