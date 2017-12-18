@@ -10,37 +10,36 @@
     <link rel="stylesheet" href="css/ionicons.css">
 </head>
 <body>
-<div id="btn1" style="width: 80px; height: 30px; text-align: center; line-height: 30px; background-color: #999; cursor: pointer; margin: 100px;">按钮1</div>
-<div id="btn2" style="width: 80px; height: 30px; text-align: center; line-height: 30px; background-color: #999; cursor: pointer; margin: 100px;">按钮2</div>
+<div id="btn1" style="width: 80px; height: 30px; text-align: center; line-height: 30px; background-color: #999; cursor: pointer; margin: 100px;" onclick="btn1()">按钮1</div>
+<div id="btn2" style="width: 80px; height: 30px; text-align: center; line-height: 30px; background-color: #999; cursor: pointer; margin: 100px;" onclick="btn2()">按钮2</div>
 <script>
     $(function(){
-        $("#btn1").click(function(){
-            var tk1 = new dialog();
-            tk1.init({
+        btn1 = function(){
+            new dialog().init({
                 title:"测试1",
                 width:500,
                 dialogHtml:'<label><input type="text" class="input1" placeholder="姓名"></label><br><br>\n' +
-                '    <label><input type="text" placeholder="密码" onkeyup="word(this)"><p class="text"></p></label>',
+                '    <label><input type="text" placeholder="密码" onkeyup="word(this)"><p class="text"></p></label><br>' +
+                '<button onclick="btn3()">再来一个弹框</button>',
                 buttons:[
                     {
                         name:'提交',
                         className:"tijiao",
-                        id:"tijiao",
+                        id:"",
                         method:'send()'
                     },
                     {
                         name:'取消',
-                        className:"close",
-                        id:"tijiao",
-                        method:'closedialog()'
+                        className:"dialog-close",
+                        id:"",
+                        method:''
                     }
 
                 ]
             })
-        })
-        $("#btn2").click(function(){
-            var tk2 = new dialog();
-            tk2.init({
+        }
+        btn2 = function(){
+            new dialog().init({
                 title:"测试2",
                 width:500,
                 height:200,
@@ -48,14 +47,48 @@
                 buttons:[
                     {
                         name:'关闭',
-                        className:"close",
+                        className:"dialog-close",
                         id:"",
-                        method:'closedialog()'
+                        method:''
                     }
                 ]
             })
 
-        })
+        }
+        btn3 = function(){
+            new dialog().init({
+                title:"第二个弹框呈现",
+                width:500,
+                height:200,
+                dialogHtml:'<p>第二个弹框呈现</p><button onclick="btn4()">第三个</button>',
+                buttons:[
+                    {
+                        name:'关闭',
+                        className:"dialog-close",
+                        id:"",
+                        method:''
+                    }
+                ]
+            })
+
+        }
+        btn4 = function(){
+            new dialog().init({
+                title:"第三个弹框呈现",
+                width:500,
+                height:200,
+                dialogHtml:'<p>第三个弹框呈现</p>',
+                buttons:[
+                    {
+                        name:'关闭',
+                        className:"dialog-close",
+                        id:"",
+                        method:''
+                    }
+                ]
+            })
+
+        }
         send = function(){
             alert($(".input1").val())
         }
