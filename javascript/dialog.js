@@ -1,9 +1,5 @@
 /*
-* 2017-12-18
-* 修改：当页面多个重叠弹框时候的问题
-*       关闭功能使弹窗内部的元素class为dialog-close，即可实现关闭
-*       键盘事件esc可关闭弹框
-*       通过某个事件之后关闭弹框请调用closedialog()方法
+* 2017-12-19
 * */
 function dialog(){
     this.oDiv = null;
@@ -32,8 +28,8 @@ function dialog(){
             }
         ]         // 按钮组
     }
-    this.settings.left = (winWidth()-this.settings.width)/2;   // 初始化弹框定位位置为正中心
-    this.settings.top = (winHeight()-this.settings.height)/2;
+    // this.settings.left = (winWidth()-this.settings.width)/2;   // 初始化弹框定位位置为正中心
+    // this.settings.top = (winHeight()-this.settings.height)/2;
 }
 dialog.prototype.init = function(opt){
     extend( this.settings,opt)
@@ -62,6 +58,9 @@ dialog.prototype.creatEl = function(){
         "<div class='dialog-content' style='height: "+(this.settings.height-70)+"px'>"+this.settings.dialogHtml+"</div><div class='dialog-btns'>"+this.btns+"</div>";
     this.oDiv.style.width = this.settings.width+"px";
     this.oDiv.style.height= this.settings.height+"px";
+    this.settings.left = (winWidth()-this.settings.width)/2;
+    this.settings.top = (winHeight()-this.settings.height)/2;
+
     this.oDiv.style.left = this.settings.left+"px";
     this.oDiv.style.top = this.settings.top+"px";
 
