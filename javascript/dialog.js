@@ -139,9 +139,12 @@ function winHeight() {
     return document.documentElement.clientHeight
 }
 //点击事件关闭dialog
-function closedialog(){
+function closedialog(reload){
     var dialogboxs = document.getElementsByClassName("dialogbox");
     document.body.removeChild(dialogboxs[dialogboxs.length-1])
+    if(reload){ //是否需要刷新页面
+        location.reload(true)
+    }
 }
 function extend(obj1,obj2){
     for(var attr in obj2){
