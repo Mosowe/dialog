@@ -45,6 +45,7 @@ dialog.prototype.doSomething = function(){
 };
 //创建弹框
 dialog.prototype.creatEl = function(){
+    document.body.style.overflow="hidden";
     this.oDiv = document.createElement("div");
     this.oDiv.className = "dialog-wrapper";
 
@@ -120,10 +121,12 @@ dialog.prototype.closeEl = function(){
     var closebtn = document.getElementsByClassName("dialog-close");
     for (var i=0; i<closebtn.length; i++) {
         closebtn[i].onclick = function(){
+            document.body.style.overflow="auto";
             document.body.removeChild(dialogbox[dialogbox.length-1])
         }
     }
     document.onkeydown = function(){
+        document.body.style.overflow="auto";
         var e = event||window.event;
         if(e.keyCode == 27){
             document.body.removeChild(dialogbox[dialogbox.length-1]);
