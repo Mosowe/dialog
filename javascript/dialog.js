@@ -74,7 +74,7 @@ dialog.prototype.creatEl = function(){
 //弹框拖拽功能
 dialog.prototype.drag = function(){
     var This = this;
-    This.oDiv.getElementsByTagName("h1")[0].onmousedown = function(){
+    This.oDiv.getElementsByTagName("h1")[0].onmousedown = function(event){
         var ev = event || window.event;
         var dleft = ev.clientX - This.oDiv.offsetLeft;
         var dtop  = ev.clientY - This.oDiv.offsetTop;
@@ -82,7 +82,7 @@ dialog.prototype.drag = function(){
         if(This.oDiv.setCapture){//设置全局捕获==>取消浏览器默认的文字拖拽（ie8及以下）
             This.oDiv.setCapture();
         }
-        document.onmousemove = function(){
+        document.onmousemove = function(event){
             var e = event || window.event;
             var mLeft = e.clientX - dleft;
             var mTop  = e.clientY - dtop;
@@ -125,7 +125,7 @@ dialog.prototype.closeEl = function(){
             document.body.removeChild(dialogbox[dialogbox.length-1])
         }
     }
-    document.onkeydown = function(){
+    document.onkeydown = function(event){
         document.body.style.overflow="auto";
         var e = event||window.event;
         if(e.keyCode == 27){
